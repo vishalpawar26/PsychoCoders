@@ -13,6 +13,3 @@ This is a web application built with the MERN stack (MongoDB, Express.js, React.
 
 ## Contributing
 We welcome contributions to this project! Feel free to fork the repository, make changes, and submit a pull request.
-
-## License
-This project is licensed under the MIT License (see LICENSE.md for details).
