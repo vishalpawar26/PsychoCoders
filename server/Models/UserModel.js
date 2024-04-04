@@ -20,14 +20,8 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   problemSolved: {
-    type: [
-      {
-        title: { type: String, unique: true },
-        url: { type: String, unique: true },
-        difficulty: String,
-      },
-    ],
-    default: [],
+    type: [Array],
+    default: []
   },
   languages: {
     type: [String],

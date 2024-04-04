@@ -6,25 +6,16 @@ const updateUser = async (req, res) => {
   const { userId, title, url, difficulty, lang } = req.body;
 
   const updateSolvedProblems = async () => {
-    const existingProblems = await UserModel.findById(userId).select(
-      "problemSolved"
-    );
-    const existingTitles = existingProblems.problemSolved.map(
-      (obj) => obj.title
+    const update = await UserModel.updateOne(
+      { _id: userId },
+      {
+        $addToSet: {
+          problemSolved: [title, url, difficulty],
+        },
+      }
     );
 
-    if (!existingTitles.includes(title)) {
-      const updateUser = await UserModel.updateOne(
-        { _id: userId },
-        {
-          $push: {
-            // Use $push instead of $addToSet for existing arrays
-            problemSolved: { title, url, difficulty },
-          },
-        }
-      );
-      console.log(updateUser);
-    }
+    console.log(update);
   };
 
   const updateLanguages = async () => {
