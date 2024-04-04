@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/images/logo-3.png";
 
-const Navbar = () => {
-  // const [userData, setUserData] = useState({ user: null, isAuth: null });
-  const [loggedIn, setLoggedIn] = useState(false);
-
+const Navbar = ({ user }) => {
   const logoutUser = async () => {
     const response = await axios.post(
       "http://localhost:4001/auth/logout",
@@ -23,29 +20,9 @@ const Navbar = () => {
     return new Error("Unable to logout!");
   };
 
-  const handleLogout = async () => {
-    const response = await logoutUser();
-
-    if (response.status === 200) {
-      setLoggedIn(false);
-    }
-    console.log(response);
+  const handleLogout = () => {
+    logoutUser();
   }
-
-  const getUserDetails = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4001/auth/user`, {
-        withCredentials: true,
-      });
-      setLoggedIn(true);
-    } catch (error) {
-      setLoggedIn(false);
-    }
-  };
-
-  useEffect(() => {
-    getUserDetails();
-  }, [loggedIn]);
 
   return (
     <div className="bg-gray px-36 py-2 min-w-[1024px] flex justify-between items-center">
@@ -53,7 +30,7 @@ const Navbar = () => {
         <img src={logo} alt="PsychoCoders" className="w-40" />
       </Link>
       <div className="flex gap-4">
-        {loggedIn ? (
+        {user ? (
           <>
             <Link
               to={"/"}

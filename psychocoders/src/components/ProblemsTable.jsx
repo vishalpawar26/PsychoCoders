@@ -1,38 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import sol_icon from "../assets/icons/solution.svg";
-import done from "../assets/icons/done.svg"
+import done from "../assets/icons/done.svg";
 
-const ProblemTable = ({ problems }) => {
-  const [user, setUser] = useState();
-
-  const getUserDetails = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4001/auth/user`, {
-        withCredentials: true,
-      });
-
-      setUser(user.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+const ProblemTable = ({ problems, user }) => {
   const getSolvedProblems = (title) => {
     for (const obj of user.problemSolved) {
-      if (obj.title === title) {
+      if (obj[0] === title) {
         return true;
       }
     }
-
     return false;
-  }
-
-  useEffect(() => {
-    getUserDetails();
-  }, []);
+  };
 
   return (
     <tbody className="text-white/80">
@@ -47,11 +27,9 @@ const ProblemTable = ({ problems }) => {
         return (
           <tr className={`${bgcolor}`} key={problem.id}>
             <td className="p-2">
-              {
-                user && getSolvedProblems(problem.title) && (
-                  <img src={done} alt="Solved" />
-                ) 
-              }
+              {user && getSolvedProblems(problem.title) && (
+                <img src={done} alt="Solved" />
+              )}
             </td>
             <td className="p-2">
               <Link to={`/problems/${problem.id}`}>

@@ -1,15 +1,38 @@
-import React from "react";
-import ProblemTable from "../components/ProblemsTable";
-import sol_icon from "../assets/icons/solution.svg";
-import done_icon from "../assets/icons/done.svg";
-import Navbar from "../components/Navbar";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+import ProblemTable from "../components/ProblemsTable";
+import Navbar from "../components/Navbar";
 import loader from "../assets/animations/loader.gif"
 
 const HomePage = ({ problems }) => {
+  const [user, setUser] = useState();
+
+  const navigate = useNavigate();
+
+  const getUserDetails = async () => {
+    try {
+      const user = await axios.get(`http://localhost:4001/auth/user`, {
+        withCredentials: true,
+      });
+
+      setUser(user.data);
+    } catch (error) {
+      console.log(error.response);
+      if (error.response.data.message === "No cookie present!") {
+        navigate("/login");
+      }
+    }
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="bg-dark-gray min-w-[1024px] h-main">
         {/* <img src={logo} alt="PsychoCoders" /> */}
         <div className="mx-36 overflow-x-auto">
@@ -34,7 +57,7 @@ const HomePage = ({ problems }) => {
                   </th>
                 </tr>
               </thead>
-              <ProblemTable problems={problems} />
+              <ProblemTable problems={problems} user={user} />
             </table>
           ) : (
             <div className="h-main flex flex-col items-center justify-center">

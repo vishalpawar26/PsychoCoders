@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -20,11 +21,15 @@ const LoginPage = () => {
       .post("http://localhost:4001/auth/login", { email, password })
       .then((res) => {
         console.log(res);
+        setMessage(null);
         if (res.status === 200) {
           navigate("/");
         }
       })
-      .catch((err) => console.log(err.response));
+      .catch((error) => {
+        setMessage(error.response.data.message);
+        console.log(error.response.data.message);
+      });
   };
 
   return (
@@ -34,6 +39,12 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <div className="px-6 py-8 bg-dark-yellow/10 w-96 rounded-lg flex flex-col justify-center items-center shadow-lg">
             <img src={logo} alt="PsychoCoders" className="w-44 mb-4" />
+
+            {message && (
+              <div className="px-2 py-1 mb-4 border border-red-500 rounded bg-red-500/15">
+                <p className="text-red-500">{message}</p>
+              </div>
+            )}
 
             <p className="mb-1 ml-1 w-full text-white/60 text-left">Email</p>
             <input

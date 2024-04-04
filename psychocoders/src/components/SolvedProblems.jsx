@@ -25,23 +25,23 @@ const SolvedProblems = ({ solvedProblemsList, totalProblems }) => {
           <div className="w-3/4 bg-white/5 p-4 rounded-md">
             {solvedProblemsList.map((problem, index) => {
               return (
-                <div key={problem.title} className="w-full">
+                <div key={problem[0]} className="w-full">
                   <div
                     className={`px-4 py-2 ${
                       index & 1 ? "bg-transparent" : "bg-white/5"
                     } rounded flex justify-between`}
                   >
-                    <a href={problem.url}>{problem.title}</a>
+                    <a href={problem[1]}>{problem[0]}</a>
                     <p
                       className={`${
-                        problem.difficulty === "Easy"
+                        problem[2] === "Easy"
                           ? "text-green"
-                          : problem.difficulty === "Medium"
+                          : problem[2] === "Medium"
                           ? "text-yellow"
                           : "text-red-500"
                       }`}
                     >
-                      {problem.difficulty}
+                      {problem[2]}
                     </p>
                   </div>
                 </div>

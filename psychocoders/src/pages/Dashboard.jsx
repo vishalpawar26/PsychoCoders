@@ -20,7 +20,9 @@ const Dashboard = ({ totalProblems }) => {
       setUser(user.data);
     } catch (error) {
       console.log(error);
-      navigate("/login");
+      if (error.response.data.message === "No cookie present!") {
+        navigate("/login");
+      }
     }
   };
 
@@ -30,7 +32,7 @@ const Dashboard = ({ totalProblems }) => {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <div className="px-36 py-4 h-main bg-dark-gray">
         {user ? (
           <div className="text-white">
