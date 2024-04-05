@@ -95,8 +95,9 @@ const ProblemPage = ({
   const addSolvedProblem = async () => {
     const userId = user._id;
     const url = window.location.href;
-    const lang = language.label;
-    console.log(lang);
+    const langLabel = language.label;
+    const langValue = language.value;
+    const submissionDate = new Date();
 
     try {
       const updateUser = await axios.post(`http://localhost:4001/update`, {
@@ -104,7 +105,10 @@ const ProblemPage = ({
         title,
         url,
         difficulty,
-        lang,
+        langLabel,
+        langValue,
+        code,
+        submissionDate,
       });
 
       // setUser(updateUser.data);

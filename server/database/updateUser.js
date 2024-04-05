@@ -1,18 +1,25 @@
-const mongoose = require("mongoose");
-
 const UserModel = require("../Models/UserModel");
 
 const updateUser = async (req, res) => {
-  const { userId, title, url, difficulty, lang } = req.body;
+  const { userId, title, url, difficulty, langLabel, langValue, code, submissionDate } = req.body;
 
   const updateSolvedProblems = async () => {
+    const user = await UserModel.findOne({ _id: userId });
+    const solvedProblemList = user.problemSolved;
+
+    const index = solvedProblemList.findIndex(
+      (problem) => problem[0] === title
+    );
+
+    if (index !== -1) {
+      solvedProblemList[index] = [title, url, difficulty, code, langValue, submissionDate];
+    } else {
+      solvedProblemList.push([title, url, difficulty, code, langValue, submissionDate]);
+    }
+
     const update = await UserModel.updateOne(
       { _id: userId },
-      {
-        $addToSet: {
-          problemSolved: [title, url, difficulty],
-        },
-      }
+      { $set: { problemSolved: solvedProblemList } }
     );
 
     console.log(update);
@@ -23,7 +30,7 @@ const updateUser = async (req, res) => {
       { _id: userId },
       {
         $addToSet: {
-          languages: lang,
+          languages: langLabel,
         },
       }
     );

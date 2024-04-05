@@ -39,13 +39,13 @@ const Dashboard = ({ totalProblems }) => {
             <div className="flex gap-4">
               <div className="px-8 py-4 w-1/4 bg-white/5 rounded-md">
                 <p className="text-white/50">Username</p>
-                <p className="text-xl">{user.username}</p>
+                <p className="text-xl text-white/75">{user.username}</p>
               </div>
               <div className="px-8 py-4 w-1/4 bg-white/5 rounded-md">
                 <p className="text-white/50">Languages</p>
                 {
                   user.languages.length > 0 ? (
-                    <p className="text-xl">{user.languages.join(", ")}</p>
+                    <p className="text-xl text-white/75">{user.languages.join(", ")}</p>
                   ) : (
                     <p className="text-sm text-white/50">Langauages will be displayed here</p>
                   )
@@ -53,7 +53,7 @@ const Dashboard = ({ totalProblems }) => {
               </div>
               <div className="px-8 py-4 w-1/2 bg-white/5 rounded-md">
                 <p className="text-white/50">Institution</p>
-                <p className="text-xl">{user.institution}</p>
+                <p className="text-xl text-white/75">{user.institution}</p>
               </div>
             </div>
             

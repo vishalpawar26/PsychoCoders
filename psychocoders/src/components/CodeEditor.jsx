@@ -29,6 +29,7 @@ const CodeEditor = ({
         </button>
       </div>
       <div className="rounded overflow-hidden">
+        <div className="bg-[#1e1e1e] h-2"></div>
         <Editor
           width="100%"
           height="60vh"

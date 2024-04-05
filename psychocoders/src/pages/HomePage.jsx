@@ -4,7 +4,7 @@ import axios from "axios";
 
 import ProblemTable from "../components/ProblemsTable";
 import Navbar from "../components/Navbar";
-import loader from "../assets/animations/loader.gif"
+import LoadingScreen from "../components/LoadingScreen";
 
 const HomePage = ({ problems }) => {
   const [user, setUser] = useState();
@@ -31,11 +31,11 @@ const HomePage = ({ problems }) => {
   }, []);
 
   return (
-    <>
+    <div className="h-screen">
       <Navbar user={user} />
       <div className="bg-dark-gray min-w-[1024px] h-main">
         {/* <img src={logo} alt="PsychoCoders" /> */}
-        <div className="mx-36 overflow-x-auto">
+        <div className="mx-36 overflow-x-auto h-full">
           {problems && problems.length > 0 ? (
             <table className="w-full">
               <thead>
@@ -60,14 +60,11 @@ const HomePage = ({ problems }) => {
               <ProblemTable problems={problems} user={user} />
             </table>
           ) : (
-            <div className="h-main flex flex-col items-center justify-center">
-              <img src={loader} alt="" className="h-16" />
-              <p className="text-white text-center">Loading Problems...</p>
-            </div>
+            <LoadingScreen message="Loading Problems..." />
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

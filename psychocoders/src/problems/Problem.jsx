@@ -1,6 +1,6 @@
 import React from "react";
 import ProblemPage from "../pages/ProblemPage";
-import loader from "../assets/animations/loader.gif";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Problem = ({ problems }) => {
   const currentURL = window.location.href;
@@ -9,7 +9,7 @@ const Problem = ({ problems }) => {
   const index = lastIndex - 1;
 
   return (
-    <div>
+    <div className="h-screen">
       {problems && problems.length > 0 ? (
         <ProblemPage
           title={problems[index].title}
@@ -25,10 +25,7 @@ const Problem = ({ problems }) => {
           explanation={problems[index].explanation}
         />
       ) : (
-        <div className=" h-screen flex flex-col justify-center items-center">
-          <img src={loader} alt="Loading..." className="h-16" />
-          <p className="text-white">Loading Problem...</p>
-        </div>
+        <LoadingScreen message="Loading Problem..." />
       )}
     </div>
   );

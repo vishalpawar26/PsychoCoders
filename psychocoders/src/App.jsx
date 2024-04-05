@@ -10,6 +10,7 @@ import SignUpPage from "./pages/SignUpPage";
 import Error404Page from "./pages/Error404Page";
 import Problem from "./problems/Problem";
 import Dashboard from "./pages/Dashboard";
+import UserSolutionPage from "./pages/UserSolutionPage";
 
 function App() {
   const [problems, setProblems] = useState([]);
@@ -38,6 +39,9 @@ function App() {
           />
           <Route path="/problems/">
             <Route path="*" element={<Problem problems={problems} />} />
+          </Route>
+          <Route path="/userSolution">
+            <Route path="*" element={<UserSolutionPage />} />
           </Route>
           <Route path="*" element={<Error404Page />} />
         </Routes>

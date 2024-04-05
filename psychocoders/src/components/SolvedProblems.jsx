@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SolvedProblems = ({ solvedProblemsList, totalProblems }) => {
   return (
@@ -31,7 +32,12 @@ const SolvedProblems = ({ solvedProblemsList, totalProblems }) => {
                       index & 1 ? "bg-transparent" : "bg-white/5"
                     } rounded flex justify-between`}
                   >
-                    <a href={problem[1]}>{problem[0]}</a>
+                    <Link
+                      to={`/userSolution/${index + 1}`}
+                      className="text-white/70 hover:text-dark-yellow duration-200"
+                    >
+                      {problem[0]}
+                    </Link>
                     <p
                       className={`${
                         problem[2] === "Easy"
