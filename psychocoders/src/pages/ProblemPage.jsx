@@ -211,8 +211,7 @@ const ProblemPage = ({
     await axios
       .post("http://localhost:4001/run", data)
       .then((res) => {
-        console.log(typeof res.data.output);
-        console.log(typeof convertToString(actualOutput));
+        console.log(res);
 
         let output = res.data && res.data.output;
         output = output.endsWith("\n") ? output.slice(0, -1) : output;

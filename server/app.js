@@ -3,6 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const UserRouter = require("./routes/user.js");
+const ProblemRouter = require("./routes/problemRoute.js");
 const loadProblems = require("./problems/loadProblems.js");
 const executeCode = require("./problems/executeCode.js");
 const updateUser = require("./database/updateUser.js");
@@ -21,6 +22,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use("/auth", UserRouter);
+app.use("/problem", ProblemRouter);
 
 app.get("/problems", loadProblems);
 app.post("/run", executeCode);

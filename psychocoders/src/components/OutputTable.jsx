@@ -24,7 +24,7 @@ const OutputTable = ({ results, cpuTime, memory }) => {
   }, [finalPassedTestcases]);
 
   return (
-    <div className="p-4 border-t border-white/20">
+    <div className="p-4 h-full border-t border-white/20 bg-dark-gray">
       <div>
         {finalPassedTestcases === totalTestcases ? (
           <>

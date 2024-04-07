@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import sol_icon from "../assets/icons/solution.svg";
@@ -7,7 +7,7 @@ import done from "../assets/icons/done.svg";
 const ProblemTable = ({ problems, user }) => {
   const getSolvedProblems = (title) => {
     for (const obj of user.problemSolved) {
-      if (obj[0] === title) {
+      if (obj.title === title) {
         return true;
       }
     }
@@ -32,8 +32,8 @@ const ProblemTable = ({ problems, user }) => {
               )}
             </td>
             <td className="p-2">
-              <Link to={`/problems/${problem.id}`}>
-                {problem.id}. {problem.title}
+              <Link to={`/problem/${problem.id}`}>
+                {idx + 1}. {problem.title}
               </Link>
             </td>
             <td className={`${color} p-2`}>{problem.difficulty}</td>

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const problemSchema = new mongoose.Schema({
-  id: Number,
+  id: String,
   title: String,
   difficulty: String,
   solution: String,

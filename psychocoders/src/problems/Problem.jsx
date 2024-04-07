@@ -1,28 +1,43 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 import ProblemPage from "../pages/ProblemPage";
 import LoadingScreen from "../components/LoadingScreen";
 
-const Problem = ({ problems }) => {
-  const currentURL = window.location.href;
-  const urlParts = currentURL.split("/");
-  const lastIndex = urlParts[urlParts.length - 1];
-  const index = lastIndex - 1;
+const Problem = () => {
+  const problemId = useParams();
+
+  const [problem, setProblem] = useState();
+
+  useEffect(() => {
+    const fetchProblem = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4001/problem/${problemId["*"]}`);
+        setProblem(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchProblem();
+  }, [problemId]);
 
   return (
     <div className="h-screen">
-      {problems && problems.length > 0 ? (
+      {problem ? (
         <ProblemPage
-          title={problems[index].title}
-          desc={problems[index].description}
-          difficulty={problems[index].difficulty}
-          inputFormat={problems[index].inputFormat}
-          outputFormat={problems[index].outputFormat}
-          constraints={problems[index].constraints}
-          sampleInput={problems[index].sampleInput}
-          actualInput={problems[index].actualInput}
-          sampleOutput={problems[index].sampleOutput}
-          actualOutput={problems[index].actualOutput}
-          explanation={problems[index].explanation}
+          title={problem.title}
+          desc={problem.description}
+          difficulty={problem.difficulty}
+          inputFormat={problem.inputFormat}
+          outputFormat={problem.outputFormat}
+          constraints={problem.constraints}
+          sampleInput={problem.sampleInput}
+          actualInput={problem.actualInput}
+          sampleOutput={problem.sampleOutput}
+          actualOutput={problem.actualOutput}
+          explanation={problem.explanation}
         />
       ) : (
         <LoadingScreen message="Loading Problem..." />

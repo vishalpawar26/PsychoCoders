@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import ProblemTable from "../components/ProblemsTable";
+import ProblemsTable from "../components/ProblemsTable";
 import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 
@@ -34,7 +34,6 @@ const HomePage = ({ problems }) => {
     <div className="h-screen">
       <Navbar user={user} />
       <div className="bg-dark-gray min-w-[1024px] h-main">
-        {/* <img src={logo} alt="PsychoCoders" /> */}
         <div className="mx-36 overflow-x-auto h-full">
           {problems && problems.length > 0 ? (
             <table className="w-full">
@@ -57,7 +56,7 @@ const HomePage = ({ problems }) => {
                   </th>
                 </tr>
               </thead>
-              <ProblemTable problems={problems} user={user} />
+              <ProblemsTable problems={problems} user={user} />
             </table>
           ) : (
             <LoadingScreen message="Loading Problems..." />

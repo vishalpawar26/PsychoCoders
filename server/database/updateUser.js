@@ -1,20 +1,47 @@
 const UserModel = require("../Models/UserModel");
+const {v4: uuidv4} = require("uuid");
 
 const updateUser = async (req, res) => {
-  const { userId, title, url, difficulty, langLabel, langValue, code, submissionDate } = req.body;
+  const {
+    userId,
+    title,
+    url,
+    difficulty,
+    langLabel,
+    langValue,
+    code,
+    submissionDate,
+  } = req.body;
 
   const updateSolvedProblems = async () => {
     const user = await UserModel.findOne({ _id: userId });
     const solvedProblemList = user.problemSolved;
+    const submissionId = uuidv4();
 
     const index = solvedProblemList.findIndex(
-      (problem) => problem[0] === title
+      (problem) => problem.title === title
     );
 
     if (index !== -1) {
-      solvedProblemList[index] = [title, url, difficulty, code, langValue, submissionDate];
+      solvedProblemList[index] = {
+        submissionId,
+        title,
+        url,
+        difficulty,
+        code,
+        langValue,
+        submissionDate,
+      };
     } else {
-      solvedProblemList.push([title, url, difficulty, code, langValue, submissionDate]);
+      solvedProblemList.push({
+        submissionId,
+        title,
+        url,
+        difficulty,
+        code,
+        langValue,
+        submissionDate,
+      });
     }
 
     const update = await UserModel.updateOne(

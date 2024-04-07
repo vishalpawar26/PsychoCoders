@@ -37,8 +37,8 @@ function App() {
             path="/dashboard"
             element={<Dashboard totalProblems={problems.length} />}
           />
-          <Route path="/problems/">
-            <Route path="*" element={<Problem problems={problems} />} />
+          <Route path="/problem/">
+            <Route path="*" element={<Problem />} />
           </Route>
           <Route path="/userSolution">
             <Route path="*" element={<UserSolutionPage />} />

@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Editor from "@monaco-editor/react";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useParams } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import goto_icon from "../assets/icons/goto.svg";
 import LoadingScreen from "../components/LoadingScreen";
 
 const UserSolutionPage = () => {
-  const [user, setUser] = useState(null);
-  const [code, setCode] = useState(null);
-  const [language, setLanguage] = useState(null);
-  const [url, setUrl] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [submissionDate, setSubmissionDate] = useState(null);
-
-  const currentURL = window.location.href;
-  const urlParts = currentURL.split("/");
-  const lastIndex = urlParts[urlParts.length - 1];
-  const index = lastIndex - 1;
+  const submissionId = useParams();
+  
+  const [copied, setCopied] = useState(false);
+  const [solution, setSolution] = useState();
 
   useEffect(() => {
-    getUserDetails();
+    const getSolutionDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4001/problem/viewsolution/${submissionId["*"]}`, {_id: "661265193affbd1b0bf95ab3"});
+        setSolution(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getSolutionDetails();
   }, []);
 
   const timeAgo = () => {
     const currentDate = new Date();
-    const givenDate = new Date(submissionDate);
+    const givenDate = new Date(solution.submissionDate);
 
     const difference = currentDate - givenDate;
 
@@ -59,41 +63,22 @@ const UserSolutionPage = () => {
     }
   };
 
-  const getUserDetails = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4001/auth/user`, {
-        withCredentials: true,
-      });
-
-      setUser(user.data);
-      setCode(user.data.problemSolved[index][3]);
-      setLanguage(user.data.problemSolved[index][4]);
-      setUrl(user.data.problemSolved[index][1]);
-      setTitle(user.data.problemSolved[index][0]);
-      setSubmissionDate(user.data.problemSolved[index][5]);
-    } catch (error) {
-      console.log(error);
-      setCode(null);
-      if (
-        error.response &&
-        error.response.data.message === "No cookie present!"
-      ) {
-        navigate("/login");
-      }
-    }
-  };
+  const onCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1000);
+  }
 
   return (
     <div className="h-screen">
-      {user ? (
+      {solution ? (
         <>
-          <Navbar user={user} />
+          <Navbar user={solution} />
           <div className="px-36 text-white">
-            <div className="text-white/70 py-6 flex gap-16">
+            <div className="text-white/70 py-6 flex gap-12">
               <div className="flex">
                 <span className="mr-1">Problem:</span>
-                <a className="text-yellow duration-200" href={url}>
-                  {title}
+                <a className="text-yellow duration-200" href={solution.url}>
+                  {solution.title}
                 </a>
                 <img src={goto_icon} className="w-4" />
               </div>
@@ -101,24 +86,34 @@ const UserSolutionPage = () => {
                 <span>Submitted:</span>{" "}
                 <span className="text-white/80">{timeAgo()}</span>
               </div>
+              <div>
+                <span>Submission ID:</span>{" "}
+                <span className="text-white/80">{solution.submissionId}</span>
+              </div>
             </div>
-            <div className="px-4 py-2 bg-gray text-white/70">
+            <div className="px-4 py-2 bg-gray text-white/70 flex justify-between">
               <p>
                 Language:{" "}
-                {language === "cpp"
+                {solution.langValue === "cpp"
                   ? "C++"
-                  : language === "java"
+                  : solution.langValue === "java"
                   ? "Java"
                   : "Python3"}
               </p>
+              <div className="relative">
+                <CopyToClipboard text={solution.code} onCopy={onCopy}>
+                  <button className="hover:text-yellow duration-200">Copy</button>
+                </CopyToClipboard>  
+                {copied && <p className="py-1 text-center w-44 bg-yellow/5 border border-dark-yellow text-dark-yellow rounded absolute bottom-full right-0 z-10">Copied to clipboard!</p>}
+              </div>
             </div>
             <div className="bg-[#1e1e1e] h-2"></div>
             <Editor
               width="100%"
               height="75vh"
               theme="vs-dark"
-              language={user && language}
-              value={user && code}
+              language={solution && solution.langValue}
+              value={solution && solution.code}
               options={{
                 scrollBeyondLastLine: false,
                 readOnly: true,
