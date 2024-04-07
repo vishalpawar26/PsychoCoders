@@ -17,7 +17,7 @@ const UserSolutionPage = () => {
   useEffect(() => {
     const getSolutionDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:4001/problem/viewsolution/${submissionId["*"]}`, {_id: "661265193affbd1b0bf95ab3"});
+        const response = await axios.get(`http://localhost:4001/problem/viewsolution/${submissionId["*"]}`);
         setSolution(response.data);
       } catch (error) {
         console.log(error);
