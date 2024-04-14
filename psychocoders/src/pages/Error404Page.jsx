@@ -11,7 +11,7 @@ const HomePage = () => {
         </div>
         <div className='text-center'>
           <p className='text-4xl'>404</p>
-          <p>Page Not Found</p>
+          <p>Not Found</p>
         </div>
       </div>
     </div>

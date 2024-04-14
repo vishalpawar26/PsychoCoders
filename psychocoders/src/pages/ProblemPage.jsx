@@ -94,21 +94,23 @@ const ProblemPage = ({
 
   const addSolvedProblem = async () => {
     const userId = user._id;
-    const url = window.location.href;
+    const problemUrl = window.location.href;
     const langLabel = language.label;
     const langValue = language.value;
+    const submissionBy = user.username;
     const submissionDate = new Date();
 
     try {
       const updateUser = await axios.post(`http://localhost:4001/update`, {
         userId,
         title,
-        url,
+        problemUrl,
         difficulty,
         langLabel,
         langValue,
         code,
         submissionDate,
+        submissionBy,
       });
 
       // setUser(updateUser.data);
@@ -254,7 +256,7 @@ const ProblemPage = ({
 
   return (
     <div className="h-screen">
-      <Problem_Navbar />
+      <Problem_Navbar user={user} />
       <div className="w-full h-main bg-dark-gray text-white/80 flex">
         <div className="px-4 py-6 w-1/2 overflow-y-auto">
           <h2 className="text-2xl font-bold">{title}</h2>

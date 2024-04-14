@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import loader from "../assets/animations/loader.gif";
 import Navbar from "../components/Navbar";
 import SolvedProblems from "../components/SolvedProblems";
 
-const Dashboard = ({ totalProblems }) => {
+const Dashboard = () => {
   const [user, setUser] = useState();
+  const { username } = useParams();
 
   const navigate = useNavigate();
 
   const getUserDetails = async () => {
     try {
-      const user = await axios.get(`http://localhost:4001/auth/user`, {
-        withCredentials: true,
-      });
+      const user = await axios.get(
+        `http://localhost:4001/auth/user/${username}`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setUser(user.data);
     } catch (error) {
@@ -32,32 +36,36 @@ const Dashboard = ({ totalProblems }) => {
 
   return (
     <>
-      <Navbar user={user} />
+      <Navbar user={user} dashboard={true} />
       <div className="px-36 py-4 h-main bg-dark-gray">
         {user ? (
           <div className="text-white">
             <div className="flex gap-4">
-              <div className="px-8 py-4 w-1/4 bg-white/5 rounded-md">
+              <div className="px-8 py-4 w-[25%] bg-white/5 rounded-md">
                 <p className="text-white/50">Username</p>
                 <p className="text-xl text-white/75">{user.username}</p>
               </div>
-              <div className="px-8 py-4 w-1/4 bg-white/5 rounded-md">
+              <div className="px-8 py-4 w-[25%] bg-white/5 rounded-md">
                 <p className="text-white/50">Languages</p>
-                {
-                  user.languages.length > 0 ? (
-                    <p className="text-xl text-white/75">{user.languages.join(", ")}</p>
-                  ) : (
-                    <p className="text-sm text-white/50">Langauages will be displayed here</p>
-                  )
-                }
+                {user.languages.length > 0 ? (
+                  <p className="text-xl text-white/75">
+                    {user.languages.join(", ")}
+                  </p>
+                ) : (
+                  <p className="text-sm text-white/50">
+                    Langauages will be displayed here
+                  </p>
+                )}
               </div>
-              <div className="px-8 py-4 w-1/2 bg-white/5 rounded-md">
+              <div className="px-8 py-4 w-[50%] bg-white/5 rounded-md">
                 <p className="text-white/50">Institution</p>
                 <p className="text-xl text-white/75">{user.institution}</p>
               </div>
             </div>
-            
-            <SolvedProblems solvedProblemsList={user.problemSolved} totalProblems={totalProblems} />
+
+            <SolvedProblems
+              solvedProblemsList={user.problemSolved}
+            />
           </div>
         ) : (
           <div className="h-full flex flex-col justify-center items-center">

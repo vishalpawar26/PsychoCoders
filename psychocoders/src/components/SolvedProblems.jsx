@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const SolvedProblems = ({ solvedProblemsList, totalProblems }) => {
+const SolvedProblems = ({ solvedProblemsList }) => {
+  const [totalProblems, setTotalProblems] = useState(0);
+
+  const getTotalProblemsCount = () => {
+    axios
+      .get("http://localhost:4001/problems")
+      .then((problems) => {
+        setTotalProblems(problems.data.length);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  useEffect(() => {
+    getTotalProblemsCount();
+  }, []);
+
   return (
     <div>
       <div className="w-full mt-4 flex gap-4">
-        {solvedProblemsList && totalProblems && (
-          <div className="w-1/4 py-4 max-h-[140.8px] text-center bg-white/5 rounded-md">
+        {solvedProblemsList && totalProblems > 0 && (
+          <div className="w-[25%] py-4 max-h-[140.8px] text-center bg-white/5 rounded-md">
             <p className="text-left text-white/50 px-4 text-sm">
               Solved Problems
             </p>
@@ -23,7 +41,7 @@ const SolvedProblems = ({ solvedProblemsList, totalProblems }) => {
           </div>
         )}
         {solvedProblemsList.length > 0 ? (
-          <div className="w-3/4 bg-white/5 p-4 rounded-md">
+          <div className="w-[75%] bg-white/5 p-4 rounded-md">
             <p className="text-left text-white/50 mb-4 text-sm">Submissions</p>
             {solvedProblemsList.map((problem, index) => {
               return (

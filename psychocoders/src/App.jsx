@@ -1,6 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import React from "react";
 
 import "./App.css";
 
@@ -13,35 +12,34 @@ import Dashboard from "./pages/Dashboard";
 import UserSolutionPage from "./pages/UserSolutionPage";
 
 function App() {
-  const [problems, setProblems] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4001/problems")
-      .then((problems) => {
-        setProblems(problems.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage problems={problems} />} />
+          <Route path="/" element={<HomePage />}>
+            <Route path="/problems">
+              <Route path=":key">
+                <Route path=":value" element={<HomePage />} />
+                <Route path=":value" element={<HomePage />} />
+                <Route path=":value" element={<HomePage />} />
+              </Route>
+              <Route path=":key">
+                <Route path=":value" element={<HomePage />} />
+                <Route path=":value" element={<HomePage />} />
+                <Route path=":value" element={<HomePage />} />
+              </Route>
+            </Route>
+          </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<SignUpPage />} />
-          <Route
-            path="/dashboard"
-            element={<Dashboard totalProblems={problems.length} />}
-          />
-          <Route path="/problem/">
-            <Route path="*" element={<Problem />} />
+          <Route path="/user">
+            <Route path=":username" element={<Dashboard />} />
+          </Route>
+          <Route path="/problem">
+            <Route path=":problemId" element={<Problem />} />
           </Route>
           <Route path="/userSolution">
-            <Route path="*" element={<UserSolutionPage />} />
+            <Route path=":submissionId" element={<UserSolutionPage />} />
           </Route>
           <Route path="*" element={<Error404Page />} />
         </Routes>

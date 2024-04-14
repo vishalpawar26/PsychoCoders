@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 import logo from "../assets/images/logo-3.png";
 
 const Navbar = ({ user }) => {
@@ -22,7 +22,7 @@ const Navbar = ({ user }) => {
 
   const handleLogout = () => {
     logoutUser();
-  }
+  };
 
   return (
     <div className="bg-gray px-36 py-2 min-w-[1024px] flex justify-between items-center">
@@ -32,18 +32,14 @@ const Navbar = ({ user }) => {
       <div className="flex gap-4">
         {user ? (
           <>
-            <Link
-              to={"/"}
-              className="px-4 py-1 bg-dark-yellow/10 text-dark-yellow rounded-md transition hover:bg-dark-yellow/15"
-            >
-              Home
-            </Link>
-            <Link
-              to={"/dashboard"}
-              className="px-4 py-1 bg-dark-yellow/10 text-dark-yellow rounded-md transition hover:bg-dark-yellow/15"
-            >
-              Dashboard
-            </Link>
+            {user.username && (
+              <Link
+                to={`/user/${user.username}`}
+                className="px-4 py-1 bg-dark-yellow/10 text-dark-yellow rounded-md transition hover:bg-dark-yellow/15"
+              >
+                Profile
+              </Link>
+            )}
             <Link
               to={"/login"}
               onClick={handleLogout}

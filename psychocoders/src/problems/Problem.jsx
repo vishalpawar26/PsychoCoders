@@ -6,14 +6,14 @@ import ProblemPage from "../pages/ProblemPage";
 import LoadingScreen from "../components/LoadingScreen";
 
 const Problem = () => {
-  const problemId = useParams();
+  const { problemId } = useParams();
 
   const [problem, setProblem] = useState();
 
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:4001/problem/${problemId["*"]}`);
+        const response = await axios.get(`http://localhost:4001/problem/${problemId}`);
         setProblem(response.data);
       } catch (error) {
         console.log(error);

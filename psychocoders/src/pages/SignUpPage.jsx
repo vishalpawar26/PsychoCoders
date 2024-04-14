@@ -54,6 +54,7 @@ const SignUpPage = () => {
 
             <p className="mb-1 ml-1 w-full text-white/60 text-left">Username</p>
             <input
+              autoComplete="off"
               type="text"
               placeholder="Your Username"
               name="username"
@@ -64,6 +65,7 @@ const SignUpPage = () => {
 
             <p className="mb-1 ml-1 w-full text-white/60 text-left">Institution</p>
             <input
+              autoComplete="off"
               type="text"
               placeholder="Your Institution"
               name="institution"
@@ -74,6 +76,7 @@ const SignUpPage = () => {
 
             <p className="mb-1 ml-1 w-full text-white/60 text-left">Email</p>
             <input
+              autoComplete="off"
               type="email"
               placeholder="Your Email"
               name="email"
@@ -84,6 +87,7 @@ const SignUpPage = () => {
 
             <p className="mb-1 ml-1 w-full text-white/60 text-left">Password</p>
             <input
+              autoComplete="off"
               type="password"
               placeholder="Your Password"
               name="password"

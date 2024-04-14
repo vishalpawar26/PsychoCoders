@@ -4,7 +4,12 @@ const cookieParser = require("cookie-parser");
 
 const UserRouter = require("./routes/user.js");
 const ProblemRouter = require("./routes/problemRoute.js");
-const loadProblems = require("./problems/loadProblems.js");
+const {
+  loadAllProblems,
+  loadProblemsByDifficulty,
+  loadProblemsByCategory,
+  loadProblems
+} = require("./problems/loadProblems.js");
 const executeCode = require("./problems/executeCode.js");
 const updateUser = require("./database/updateUser.js");
 
@@ -20,12 +25,17 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use("/auth", UserRouter);
 app.use("/problem", ProblemRouter);
 
+// app.get("/problems", loadAllProblems);
+// app.get("/problems/difficulty/:difficulty", loadProblemsByDifficulty);
+// app.get("/problems/category/:category", loadProblemsByCategory);/
 app.get("/problems", loadProblems);
+
 app.post("/run", executeCode);
-app.post("/update", updateUser)
+app.post("/update", updateUser);
 
 module.exports = app;

@@ -1,22 +1,24 @@
 const UserModel = require("../Models/UserModel");
-const {v4: uuidv4} = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 
 const updateUser = async (req, res) => {
   const {
     userId,
     title,
-    url,
+    problemUrl,
     difficulty,
     langLabel,
     langValue,
     code,
     submissionDate,
+    submissionBy,
   } = req.body;
 
   const updateSolvedProblems = async () => {
     const user = await UserModel.findOne({ _id: userId });
     const solvedProblemList = user.problemSolved;
     const submissionId = uuidv4();
+    const userUrl = `http://localhost:5173/user/${submissionBy}`;
 
     const index = solvedProblemList.findIndex(
       (problem) => problem.title === title
@@ -26,21 +28,25 @@ const updateUser = async (req, res) => {
       solvedProblemList[index] = {
         submissionId,
         title,
-        url,
+        problemUrl,
         difficulty,
         code,
         langValue,
         submissionDate,
+        submissionBy,
+        userUrl,
       };
     } else {
       solvedProblemList.push({
         submissionId,
         title,
-        url,
+        problemUrl,
         difficulty,
         code,
         langValue,
         submissionDate,
+        submissionBy,
+        userUrl,
       });
     }
 
