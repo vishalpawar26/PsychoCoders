@@ -15,6 +15,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
+
+  axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
 

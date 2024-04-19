@@ -15,6 +15,8 @@ const UserSolutionPage = () => {
   const [copied, setCopied] = useState(false);
   const [solution, setSolution] = useState();
 
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     const getSolutionDetails = async () => {
       try {
@@ -74,7 +76,7 @@ const UserSolutionPage = () => {
       {solution ? (
         <>
           <Navbar user={solution} />
-          <div className="px-36 text-white">
+          <div className="px-36 h-main text-white">
             <div className="text-white/70 py-6 flex gap-8">
               <div className="flex">
                 <span className="mr-1">Problem:</span>

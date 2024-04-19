@@ -17,6 +17,8 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     getProblems();
   }, [selectedValue]);

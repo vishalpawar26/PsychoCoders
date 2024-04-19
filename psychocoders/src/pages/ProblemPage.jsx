@@ -65,6 +65,8 @@ const ProblemPage = ({
 
   const outputRef = useRef(null);
 
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     if (language.value === "cpp") {
       setCode(cppDefault);
@@ -290,7 +292,16 @@ const ProblemPage = ({
               return <li key={index}>{sentence}</li>;
             })}
           </p>
-          <p className="mt-6 text-white/60">Made by Vishal Pawar</p>
+          <div className="mt-4">
+            <span className="text-white/50">Developed by </span>
+            <a
+              href="https://www.linkedin.com/in/vishal-r-pawar/"
+              target="_blank"
+              className="hover:underline"
+            >
+              Vishal Pawar
+            </a>
+          </div>
         </div>
         <div className="w-1/2 px-4 py-4 max-h-full overflow-y-auto">
           <CodeEditor

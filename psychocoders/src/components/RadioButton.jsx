@@ -1,5 +1,4 @@
 import React from "react";
-import tick from "../assets/icons/tick.svg";
 
 export const RadioButton = ({ label, selectedValue, onChange, name }) => {
   return (

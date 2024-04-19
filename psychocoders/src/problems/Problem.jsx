@@ -10,6 +10,8 @@ const Problem = () => {
 
   const [problem, setProblem] = useState();
 
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     const fetchProblem = async () => {
       try {

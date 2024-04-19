@@ -14,6 +14,8 @@ const SolvedProblems = ({ solvedProblemsList }) => {
   const [totalMediumProblemsCount, setTotalMediumProblemsCount] = useState(0);
   const [totalHardProblemsCount, setTotalHardProblemsCount] = useState(0);
 
+  axios.defaults.withCredentials = true;
+
   const countSolvedProblems = () => {
     let easyPC = 0;
     let mediumPC = 0;
@@ -105,7 +107,7 @@ const SolvedProblems = ({ solvedProblemsList }) => {
         )}
         {solvedProblemsList.length > 0 ? (
           <div className="w-[75%] bg-white/5 p-4 rounded-md">
-            <p className="text-left text-white/50 mb-4 text-sm">Submissions</p>
+            <p className="text-left text-white/50 mb-4 text-sm">Recent Submissions</p>
             {solvedProblemsList.slice().reverse().map((problem, index) => {
               return (
                 <div key={problem.title} className="w-full">
