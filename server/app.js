@@ -30,9 +30,6 @@ app.use(cookieParser());
 app.use("/auth", UserRouter);
 app.use("/problem", ProblemRouter);
 
-// app.get("/problems", loadAllProblems);
-// app.get("/problems/difficulty/:difficulty", loadProblemsByDifficulty);
-// app.get("/problems/category/:category", loadProblemsByCategory);/
 app.get("/problems", loadProblems);
 
 app.post("/run", executeCode);

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import ProblemsTable from "../components/ProblemsTable";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
 import { RadioButton } from "../components/RadioButton";
 
@@ -81,7 +82,7 @@ const HomePage = () => {
             </button>
           </div>
           <div className="flex flex-col gap-1">
-            <h3 className="text-white/80 font-semibold">Difficulty</h3>
+            <h3 className="text-white/80">Difficulty</h3>
             <RadioButton
               label="Easy"
               selectedValue={selectedValue}
@@ -102,7 +103,7 @@ const HomePage = () => {
             />
           </div>
           <div className="mt-2 flex flex-col gap-1">
-            <h3 className="text-white/80 font-semibold">Topics</h3>
+            <h3 className="text-white/80">Categories</h3>
             <RadioButton
               label="Maths"
               selectedValue={selectedValue}
@@ -156,6 +157,7 @@ const HomePage = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

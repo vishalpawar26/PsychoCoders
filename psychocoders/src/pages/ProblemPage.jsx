@@ -290,6 +290,7 @@ const ProblemPage = ({
               return <li key={index}>{sentence}</li>;
             })}
           </p>
+          <p className="mt-6 text-white/60">Made by Vishal Pawar</p>
         </div>
         <div className="w-1/2 px-4 py-4 max-h-full overflow-y-auto">
           <CodeEditor

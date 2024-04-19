@@ -38,7 +38,7 @@ const ProblemTable = ({ problems, user, filter }) => {
             </td>
             <td className={`${color} p-2`}>{problem.difficulty}</td>
             <td className="p-2">
-              <a href={problem.solution}>
+              <a href={problem.solution} target="_blank">
                 <img src={sol_icon} alt="Solution" />
               </a>
             </td>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo-1.png";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -82,6 +83,7 @@ const LoginPage = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

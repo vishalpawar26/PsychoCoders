@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import logo from "../assets/images/logo-1.png";
+import Footer from "../components/Footer";
 
 const SignUpPage = () => {
   const [username, setUsername] = useState("");
@@ -110,6 +111,7 @@ const SignUpPage = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

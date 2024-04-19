@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import goto_icon from "../assets/icons/goto.svg";
 import LoadingScreen from "../components/LoadingScreen";
+import Footer from "../components/Footer";
 
 const UserSolutionPage = () => {
   const { submissionId } = useParams();
@@ -131,6 +132,7 @@ const UserSolutionPage = () => {
       ) : (
         <LoadingScreen message="Loading Details..." />
       )}
+      <Footer />
     </div>
   );
 };

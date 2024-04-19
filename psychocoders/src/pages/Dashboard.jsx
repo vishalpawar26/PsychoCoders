@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import loader from "../assets/animations/loader.gif";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import SolvedProblems from "../components/SolvedProblems";
 
 const Dashboard = () => {
@@ -74,6 +75,7 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };

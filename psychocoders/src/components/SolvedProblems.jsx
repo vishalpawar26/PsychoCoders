@@ -1,49 +1,112 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import SolvedProblemsProgress from "./SolvedProblemsProgress";
 
 const SolvedProblems = ({ solvedProblemsList }) => {
   const [totalProblems, setTotalProblems] = useState(0);
 
-  const getTotalProblemsCount = () => {
+  const [easySolvedProblemsCount, setEasyProblemsCount] = useState(0);
+  const [mediumSolvedProblemsCount, setMediumProblemsCount] = useState(0);
+  const [hardSolvedProblemsCount, setHardProblemsCount] = useState(0);
+
+  const [totalEasyProblemsCount, setTotalEasyProblemsCount] = useState(0);
+  const [totalMediumProblemsCount, setTotalMediumProblemsCount] = useState(0);
+  const [totalHardProblemsCount, setTotalHardProblemsCount] = useState(0);
+
+  const countSolvedProblems = () => {
+    let easyPC = 0;
+    let mediumPC = 0;
+    let hardPC = 0;
+
+    solvedProblemsList.map((problem) => {
+      if (problem.difficulty === "Easy") {
+        easyPC++;
+      } else if (problem.difficulty === "Medium") {
+        mediumPC++;
+      } else {
+        hardPC++;
+      }
+    });
+
+    setEasyProblemsCount(easyPC);
+    setMediumProblemsCount(mediumPC);
+    setHardProblemsCount(hardPC);
+  };
+
+  const countTotalProblems = (problems) => {
+    let easyPC = 0;
+    let mediumPC = 0;
+    let hardPC = 0;
+
+    problems.map((problem) => {
+      if (problem.difficulty === "Easy") {
+        easyPC++;
+      } else if (problem.difficulty === "Medium") {
+        mediumPC++;
+      } else {
+        hardPC++;
+      }
+    });
+
+    setTotalEasyProblemsCount(easyPC);
+    setTotalMediumProblemsCount(mediumPC);
+    setTotalHardProblemsCount(hardPC);
+  };
+
+  const getTotalProblems = () => {
     axios
       .get("http://localhost:4001/problems")
       .then((problems) => {
         setTotalProblems(problems.data.length);
+        countTotalProblems(problems.data);
       })
       .catch((error) => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   useEffect(() => {
-    getTotalProblemsCount();
+    getTotalProblems();
+    countSolvedProblems();
   }, []);
 
   return (
     <div>
       <div className="w-full mt-4 flex gap-4">
         {solvedProblemsList && totalProblems > 0 && (
-          <div className="w-[25%] py-4 max-h-[140.8px] text-center bg-white/5 rounded-md">
+          <div className="w-[25%] pt-4 pb-2 h-fit text-center bg-white/5 rounded-md">
             <p className="text-left text-white/50 px-4 text-sm">
               Solved Problems
             </p>
-            <div className="py-4">
-              <span className="text-3xl font-bold text-yellow">
-                {solvedProblemsList.length}
-              </span>
-              <span className="text-xl font-semibold text-white/75">
-                {" "}
-                / {totalProblems}
-              </span>
-              <p className="text-white/50 text-sm">Solved</p>
+            <div className="p-4 flex flex-col justify-between items-center">
+              <div>
+                <span className="text-3xl font-bold text-yellow">
+                  {solvedProblemsList.length}
+                </span>
+                <span className="text-xl font-semibold text-white/75">
+                  {" "}
+                  / {totalProblems}
+                </span>
+                <p className="text-white/50 text-sm">Solved</p>
+              </div>
+              <div className="w-[100%]">
+                <SolvedProblemsProgress
+                  easySolvedProblemsCount={easySolvedProblemsCount}
+                  totalEasyProblemsCount={totalEasyProblemsCount}
+                  mediumSolvedProblemsCount={mediumSolvedProblemsCount}
+                  totalMediumProblemsCount={totalMediumProblemsCount}
+                  hardSolvedProblemsCount={hardSolvedProblemsCount}
+                  totalHardProblemsCount={totalHardProblemsCount}
+                />
+              </div>
             </div>
           </div>
         )}
         {solvedProblemsList.length > 0 ? (
           <div className="w-[75%] bg-white/5 p-4 rounded-md">
             <p className="text-left text-white/50 mb-4 text-sm">Submissions</p>
-            {solvedProblemsList.map((problem, index) => {
+            {solvedProblemsList.slice().reverse().map((problem, index) => {
               return (
                 <div key={problem.title} className="w-full">
                   <div

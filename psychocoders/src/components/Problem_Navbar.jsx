@@ -6,7 +6,7 @@ const Problem_Navbar = ({ user }) => {
   return (
     <>
       {user ? (
-        <div className="bg-gray px-4 py-2 min-w-[1024px] flex justify-between items-center">
+        <div className="bg-gray pl-2 pr-4 py-1 min-w-[1024px] flex justify-between items-center">
           <Link to="/">
             <img src={logo} alt="PsychoCoders" className="w-40" />
           </Link>
