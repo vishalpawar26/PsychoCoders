@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://psycho-coders-client.vercel.app",
+    origin: "https://psycho-coders.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   })
