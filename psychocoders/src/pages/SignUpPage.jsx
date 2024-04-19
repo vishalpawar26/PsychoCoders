@@ -20,7 +20,7 @@ const SignUpPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4001/auth/register", {
+      .post("https://psycho-coders-server.vercel.app/auth/register", {
         username,
         institution, 
         email,

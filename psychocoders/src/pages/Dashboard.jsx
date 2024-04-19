@@ -18,7 +18,7 @@ const Dashboard = () => {
   const getUserDetails = async () => {
     try {
       const user = await axios.get(
-        `http://localhost:4001/auth/user/${username}`,
+        `https://psycho-coders-server.vercel.app/auth/user/${username}`,
         {
           withCredentials: true,
         }

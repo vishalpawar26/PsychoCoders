@@ -15,7 +15,7 @@ const Problem = () => {
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`http://localhost:4001/problem/${problemId}`);
+        const response = await axios.get(`https://psycho-coders-server.vercel.app/problem/${problemId}`);
         setProblem(response.data);
       } catch (error) {
         console.log(error);

@@ -83,7 +83,7 @@ const ProblemPage = ({
 
   const getUserDetails = async () => {
     try {
-      const user = await axios.get(`http://localhost:4001/auth/user`, {
+      const user = await axios.get(`https://psycho-coders-server.vercel.app/auth/user`, {
         withCredentials: true,
       });
 
@@ -103,7 +103,7 @@ const ProblemPage = ({
     const submissionDate = new Date();
 
     try {
-      const updateUser = await axios.post(`http://localhost:4001/update`, {
+      const updateUser = await axios.post(`https://psycho-coders-server.vercel.app/update`, {
         userId,
         title,
         problemUrl,
@@ -165,7 +165,7 @@ const ProblemPage = ({
     axios.defaults.withCredentials = true;
 
     await axios
-      .post("http://localhost:4001/run", data)
+      .post("https://psycho-coders-server.vercel.app/run", data)
       .then((res) => {
         console.log(res.data);
 
@@ -213,7 +213,7 @@ const ProblemPage = ({
     axios.defaults.withCredentials = true;
 
     await axios
-      .post("http://localhost:4001/run", data)
+      .post("https://psycho-coders-server.vercel.app/run", data)
       .then((res) => {
         console.log(res);
 

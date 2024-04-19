@@ -9,7 +9,7 @@ const Navbar = ({ user }) => {
 
   const logoutUser = async () => {
     const response = await axios.post(
-      "http://localhost:4001/auth/logout",
+      "https://psycho-coders-server.vercel.app/auth/logout",
       null,
       {
         withCredentials: true,

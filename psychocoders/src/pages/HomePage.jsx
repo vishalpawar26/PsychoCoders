@@ -46,9 +46,12 @@ const HomePage = () => {
 
   const getUserDetails = async () => {
     try {
-      const user = await axios.get(`http://localhost:4001/auth/user`, {
-        withCredentials: true,
-      });
+      const user = await axios.get(
+        `https://psycho-coders-server.vercel.app/auth/user`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setUser(user.data);
     } catch (error) {
@@ -60,7 +63,9 @@ const HomePage = () => {
   };
 
   const getProblems = () => {
-    const url = key ? `http://localhost:4001/problems?${key}=${value}` : `http://localhost:4001/problems`;
+    const url = key
+      ? `https://psycho-coders-server.vercel.app/problems?${key}=${value}`
+      : `https://psycho-coders-server.vercel.app/problems`;
 
     axios
       .get(url)

@@ -5,9 +5,6 @@ const cookieParser = require("cookie-parser");
 const UserRouter = require("./routes/user.js");
 const ProblemRouter = require("./routes/problemRoute.js");
 const {
-  loadAllProblems,
-  loadProblemsByDifficulty,
-  loadProblemsByCategory,
   loadProblems
 } = require("./problems/loadProblems.js");
 const executeCode = require("./problems/executeCode.js");

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Editor from "@monaco-editor/react";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useParams } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 
 const UserSolutionPage = () => {
   const { submissionId } = useParams();
-  
+
   const [copied, setCopied] = useState(false);
   const [solution, setSolution] = useState();
 
@@ -20,12 +20,14 @@ const UserSolutionPage = () => {
   useEffect(() => {
     const getSolutionDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:4001/problem/viewsolution/${submissionId}`);
+        const response = await axios.get(
+          `https://psycho-coders-server.vercel.app/problem/viewsolution/${submissionId}`
+        );
         setSolution(response.data);
       } catch (error) {
         console.log(error);
       }
-    }
+    };
 
     getSolutionDetails();
   }, []);
@@ -69,7 +71,7 @@ const UserSolutionPage = () => {
   const onCopy = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
-  }
+  };
 
   return (
     <div className="h-screen">
@@ -80,7 +82,10 @@ const UserSolutionPage = () => {
             <div className="text-white/70 py-6 flex gap-8">
               <div className="flex">
                 <span className="mr-1">Problem:</span>
-                <a className="text-yellow duration-200" href={solution.problemUrl}>
+                <a
+                  className="text-yellow duration-200"
+                  href={solution.problemUrl}
+                >
                   {solution.title}
                 </a>
                 <img src={goto_icon} className="w-4" />
@@ -112,8 +117,14 @@ const UserSolutionPage = () => {
               </p>
               <div className="relative">
                 <CopyToClipboard text={solution.code} onCopy={onCopy}>
-                  <button className={`hover:text-yellow duration-200 ${copied && "hidden"}`}>Copy</button>
-                </CopyToClipboard>  
+                  <button
+                    className={`hover:text-yellow duration-200 ${
+                      copied && "hidden"
+                    }`}
+                  >
+                    Copy
+                  </button>
+                </CopyToClipboard>
                 {copied && <p>Copied!</p>}
               </div>
             </div>

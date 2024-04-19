@@ -15,13 +15,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
-
-  axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4001/auth/login", { email, password })
+      .post("https://psycho-coders-server.vercel.app/auth/login", { email, password })
       .then((res) => {
         console.log(res);
         setMessage(null);
