@@ -20,12 +20,8 @@ function App() {
             <Route path="/problems">
               <Route path=":key">
                 <Route path=":value" element={<HomePage />} />
-                <Route path=":value" element={<HomePage />} />
-                <Route path=":value" element={<HomePage />} />
               </Route>
               <Route path=":key">
-                <Route path=":value" element={<HomePage />} />
-                <Route path=":value" element={<HomePage />} />
                 <Route path=":value" element={<HomePage />} />
               </Route>
             </Route>
