@@ -30,7 +30,13 @@ const SolvedProblemsProgress = ({
             </span>
           </div>
         </div>
-        <div className="h-1 w-full bg-green/15 rounded-full relative">
+        <div
+          className={`h-1 w-full ${
+            easySolvedProblemsPercentage === 100
+              ? "bg-green"
+              : "bg-green/15"
+          } rounded-full relative`}
+        >
           <div
             className={`h-1 rounded-full absolute bg-green w-[${easySolvedProblemsPercentage}%]`}
           ></div>
@@ -47,7 +53,13 @@ const SolvedProblemsProgress = ({
             </span>
           </div>
         </div>
-        <div className="h-1 w-full bg-dark-yellow/15 rounded-full relative">
+        <div
+          className={`h-1 w-full ${
+            mediumSolvedProblemsPercentage === 100
+              ? "bg-dark-yellow"
+              : "bg-dark-yellow/15"
+          } rounded-full relative`}
+        >
           <div
             className={`h-1 rounded-full absolute bg-dark-yellow w-[${mediumSolvedProblemsPercentage}%]`}
           ></div>
@@ -64,7 +76,11 @@ const SolvedProblemsProgress = ({
             </span>
           </div>
         </div>
-        <div className="h-1 w-full bg-red-500/15 rounded-full relative">
+        <div className={`h-1 w-full ${
+            hardSolvedProblemsPercentage === 100
+              ? "bg-red-500"
+              : "bg-red-500/15"
+          } rounded-full relative`}>
           <div
             className={`h-1 rounded-full absolute bg-red-500 w-[${hardSolvedProblemsPercentage}%]`}
           ></div>
