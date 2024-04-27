@@ -129,6 +129,12 @@ const HomePage = () => {
               onChange={handleCategoryCheck}
               name="category"
             />
+            <RadioButton
+              label="Dynamic Programming"
+              selectedValue={selectedValue}
+              onChange={handleCategoryCheck}
+              name="category"
+            />
           </div>
         </div>
         <div className="pt-4 overflow-x-auto w-[75%] h-full">
@@ -145,10 +151,10 @@ const HomePage = () => {
                   <th className="p-2 text-white/60 text-left w-[15%] font-normal">
                     Difficulty
                   </th>
-                  <th className="p-2 text-white/60 text-left w-[15%] font-normal">
+                  <th className="p-2 text-white/60 text-left w-[10%] font-normal">
                     Solution
                   </th>
-                  <th className="p-2 text-white/60 text-left w-[15%] font-normal">
+                  <th className="p-2 text-white/60 text-left w-[20%] font-normal">
                     Category
                   </th>
                 </tr>
