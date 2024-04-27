@@ -145,7 +145,7 @@ const HomePage = () => {
                   <th className="p-2 text-white/60 text-left w-[10%] font-normal">
                     Status
                   </th>
-                  <th className="p-2 text-white/60 text-left w-[40%] font-normal">
+                  <th className="p-2 text-white/60 text-left w-[45%] font-normal">
                     Title
                   </th>
                   <th className="p-2 text-white/60 text-left w-[10%] font-normal">
@@ -154,7 +154,7 @@ const HomePage = () => {
                   <th className="p-2 text-white/60 text-left w-[10%] font-normal">
                     Solution
                   </th>
-                  <th className="p-2 text-white/60 text-left w-[30%] font-normal">
+                  <th className="p-2 text-white/60 text-left w-[25%] font-normal">
                     Category
                   </th>
                 </tr>
