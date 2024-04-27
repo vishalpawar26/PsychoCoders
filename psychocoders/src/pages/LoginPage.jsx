@@ -29,7 +29,7 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setMessage(error.response.data.message);
-        console.log(error.response.data.message);
+        console.log(error);
       });
   };
 
