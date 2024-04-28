@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import sol_icon from "../assets/icons/solution.svg";
 import done from "../assets/icons/done.svg";
 
-const ProblemTable = ({ problems, user, filter }) => {
+const ProblemTable = ({ problems, user }) => {
   const getSolvedProblems = (title) => {
     for (const obj of user.problemSolved) {
       if (obj.title === title) {
@@ -27,7 +27,7 @@ const ProblemTable = ({ problems, user, filter }) => {
         return (
           <tr className={`${bgcolor}`} key={problem.id}>
             <td className="p-2">
-              {user.problemSolved && getSolvedProblems(problem.title) && (
+              {user.problemSolved.length > 0 && getSolvedProblems(problem.title) && (
                 <img src={done} alt="Solved" />
               )}
             </td>

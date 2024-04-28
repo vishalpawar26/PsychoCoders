@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar user={user} dashboard={true} />
+      <Navbar user={user} />
       <div className="px-36 py-4 h-main bg-dark-gray">
         {user ? (
           <div className="text-white">
