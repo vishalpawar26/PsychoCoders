@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo-1.png";
+import loader from "../assets/animations/loader.gif";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -11,18 +12,21 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [processing, setProcessing] = useState(false);
 
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
+    setProcessing(true);
 
     axios
       .post("https://psycho-coders-server.vercel.app/auth/login", { email, password })
       .then((res) => {
         console.log(res);
         setMessage(null);
+        setProcessing(false);
         if (res.status === 200) {
           navigate("/");
         }
@@ -30,6 +34,7 @@ const LoginPage = () => {
       .catch((error) => {
         setMessage(error.response.data.message);
         console.log(error);
+        setProcessing(false);
       });
   };
 
@@ -70,9 +75,13 @@ const LoginPage = () => {
             />
             <button
               type="submit"
-              className="px-4 py-2 my-4 w-full bg-dark-yellow text-white rounded-md font-semibold"
+              className="px-4 py-2 my-4 w-full bg-dark-yellow text-white rounded-md font-semibold flex justify-center items-center"
             >
-              Login
+              {processing ? (
+                <img src={loader} alt="Loading..." className="w-6" />
+              ) : (
+                <p>Login</p>
+              )}
             </button>
             <p className="text-white/60">
               Don't have account? {}

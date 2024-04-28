@@ -12,6 +12,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [processing, setProcessing] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,16 +20,19 @@ const SignUpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setProcessing(true);
+
     axios
       .post("https://psycho-coders-server.vercel.app/auth/register", {
         username,
-        institution, 
+        institution,
         email,
         password,
       })
       .then((res) => {
         console.log(res);
         setMessage(null);
+        setProcessing(false);
         if (res.status === 201) {
           navigate("/login");
         }
@@ -38,6 +42,7 @@ const SignUpPage = () => {
           setMessage(err.response.data.message);
         }
         console.log(err);
+        setProcessing(false);
       });
   };
 
@@ -66,7 +71,9 @@ const SignUpPage = () => {
               className="px-4 py-2 mb-4 w-full text-white/60 bg-white/5 rounded-md outline-none focus:border focus:border-white/30"
             />
 
-            <p className="mb-1 ml-1 w-full text-white/60 text-left">Institution</p>
+            <p className="mb-1 ml-1 w-full text-white/60 text-left">
+              Institution
+            </p>
             <input
               autoComplete="off"
               type="text"
@@ -100,9 +107,13 @@ const SignUpPage = () => {
             />
             <button
               type="submit"
-              className="px-4 py-2 my-4 w-full bg-dark-yellow text-white rounded-md font-semibold"
+              className="px-4 py-2 my-4 w-full bg-dark-yellow text-white rounded-md font-semibold flex justify-center items-center"
             >
-              Sign Up
+              {processing ? (
+                <img src={loader} alt="Loading..." className="w-6" />
+              ) : (
+                <p>Sign Up</p>
+              )}
             </button>
             <p className="text-white/60">
               Have an account? {}
