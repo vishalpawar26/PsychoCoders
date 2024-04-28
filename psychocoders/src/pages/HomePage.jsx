@@ -56,9 +56,7 @@ const HomePage = () => {
       setUser(user.data);
     } catch (error) {
       console.log(error.response);
-      if (error.response.data.message === "No cookie present!") {
-        navigate("/login");
-      }
+      navigate("/login");
     }
   };
 
