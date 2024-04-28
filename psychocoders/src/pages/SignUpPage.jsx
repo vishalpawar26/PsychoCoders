@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+
 import logo from "../assets/images/logo-1.png";
+import loader from "../assets/animations/loader.gif"
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const SignUpPage = () => {
