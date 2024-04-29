@@ -20,12 +20,12 @@ const HomePage = () => {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    getProblems();
-  }, [selectedValue]);
-
-  useEffect(() => {
     getUserDetails();
   }, []);
+
+  useEffect(() => {
+    getProblems();
+  }, [selectedValue]);
 
   const handleDifficultyCheck = (e) => {
     setSelectedValue(e.target.value);
