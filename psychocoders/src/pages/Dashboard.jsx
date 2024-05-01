@@ -50,7 +50,7 @@ const Dashboard = () => {
               </div>
               <div className="px-8 py-4 w-[25%] bg-white/5 rounded-md">
                 <p className="text-white/50">Languages</p>
-                {user.languages.length > 0 ? (
+                {user.languages && user.languages.length > 0 ? (
                   <p className="text-xl text-white/75">
                     {user.languages.join(", ")}
                   </p>
