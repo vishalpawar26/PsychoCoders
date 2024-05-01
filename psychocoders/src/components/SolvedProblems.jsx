@@ -109,7 +109,7 @@ const SolvedProblems = ({ solvedProblemsList }) => {
             </div>
           )}
         </div>
-        {solvedProblemsList.length > 0 ? (
+        {solvedProblemsList && solvedProblemsList.length > 0 ? (
           <div className="w-[75%] bg-white/5 p-4 rounded-md">
             <p className="text-left text-white/50 mb-4 text-sm">
               Recent Submissions
