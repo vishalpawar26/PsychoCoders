@@ -21,7 +21,7 @@ const SolvedProblems = ({ solvedProblemsList }) => {
     let mediumPC = 0;
     let hardPC = 0;
 
-    solvedProblemsList.map((problem) => {
+    solvedProblemsList && solvedProblemsList.map((problem) => {
       if (problem.difficulty === "Easy") {
         easyPC++;
       } else if (problem.difficulty === "Medium") {
