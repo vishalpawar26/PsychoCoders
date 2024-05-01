@@ -18,7 +18,7 @@ const updateUser = async (req, res) => {
     const user = await UserModel.findOne({ _id: userId });
     const solvedProblemList = user.problemSolved;
     const submissionId = uuidv4();
-    const userUrl = `http://localhost:5173/user/${submissionBy}`;
+    const userUrl = `https://psychocoders.vercel.app/user/${submissionBy}`;
 
     const index = solvedProblemList.findIndex(
       (problem) => problem.title === title
