@@ -24,9 +24,6 @@ const CodeEditor = ({
           defaultValue={languageOptions[0]}
           onChange={(e) => setLanguage(e)}
         />
-        <button className="text-gray-100 px-2 rounded hover:bg-gray">
-          Reset
-        </button>
       </div>
       <div className="rounded overflow-hidden">
         <div className="bg-[#1e1e1e] h-2"></div>
