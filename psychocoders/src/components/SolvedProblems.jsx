@@ -21,15 +21,16 @@ const SolvedProblems = ({ solvedProblemsList }) => {
     let mediumPC = 0;
     let hardPC = 0;
 
-    solvedProblemsList && solvedProblemsList.map((problem) => {
-      if (problem.difficulty === "Easy") {
-        easyPC++;
-      } else if (problem.difficulty === "Medium") {
-        mediumPC++;
-      } else {
-        hardPC++;
-      }
-    });
+    solvedProblemsList &&
+      solvedProblemsList.map((problem) => {
+        if (problem.difficulty === "Easy") {
+          easyPC++;
+        } else if (problem.difficulty === "Medium") {
+          mediumPC++;
+        } else {
+          hardPC++;
+        }
+      });
 
     setEasyProblemsCount(easyPC);
     setMediumProblemsCount(mediumPC);
@@ -94,19 +95,24 @@ const SolvedProblems = ({ solvedProblemsList }) => {
               </div>
               <div className="w-full">
                 <SolvedProblemsProgress
-                  easySolvedProblemsCount={easySolvedProblemsCount}
-                  totalEasyProblemsCount={totalEasyProblemsCount}
-                  mediumSolvedProblemsCount={mediumSolvedProblemsCount}
-                  totalMediumProblemsCount={totalMediumProblemsCount}
-                  hardSolvedProblemsCount={hardSolvedProblemsCount}
-                  totalHardProblemsCount={totalHardProblemsCount}
+                  solvedProblemsCount={easySolvedProblemsCount}
+                  totalProblemsCount={totalEasyProblemsCount}
+                  difficulty="Easy"
+                />
+                <SolvedProblemsProgress
+                  solvedProblemsCount={mediumSolvedProblemsCount}
+                  totalProblemsCount={totalMediumProblemsCount}
+                  difficulty="Medium"
+                />
+                <SolvedProblemsProgress
+                  solvedProblemsCount={hardSolvedProblemsCount}
+                  totalProblemsCount={totalHardProblemsCount}
+                  difficulty="Hard"
                 />
               </div>
             </div>
           ) : (
-            <div className="py-16">
-              Loading...
-            </div>
+            <div className="py-16">Loading...</div>
           )}
         </div>
         {solvedProblemsList && solvedProblemsList.length > 0 ? (
