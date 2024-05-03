@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import sol_icon from "../assets/icons/solution.svg";
 import done from "../assets/icons/done.svg";
 
 const ProblemTable = ({ problems, user }) => {
