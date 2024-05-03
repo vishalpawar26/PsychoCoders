@@ -24,7 +24,7 @@ const SolvedProblemsProgress = ({
         </div>
         <div
           className={`h-1 w-full rounded-full relative bg-red`}
-          style={{backgroundColor: `${bgColor}55`}}
+          style={{backgroundColor: `${bgColor}30`}}
         >
           <div
             className={`h-1 rounded-full absolute bg-green`}
