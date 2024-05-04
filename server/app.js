@@ -14,11 +14,18 @@ require("dotenv").config();
 require("./database/database.js").connent();
 
 const app = express();
+const allowedOrigins = ["https://psychocoders.vercel.app/login"];
 
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://psychocoders.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        return callback(new Error('Origin not allowed by CORS'));
+      }
+      callback(null, true);
+    },
     methods: ["GET", "POST"],
     credentials: true,
   })
