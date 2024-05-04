@@ -13,21 +13,13 @@ const updateUser = require("./database/updateUser.js");
 require("dotenv").config();
 require("./database/database.js").connent();
 
-app.use(cookieParser());
-
 const app = express();
-const allowedOrigins = ["https://psychocoders.vercel.app"];
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        return callback(new Error('Origin not allowed by CORS'));
-      }
-      callback(null, true);
-    },
+    origin: "https://psychocoders.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   })
