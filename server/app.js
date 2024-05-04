@@ -13,6 +13,8 @@ const updateUser = require("./database/updateUser.js");
 require("dotenv").config();
 require("./database/database.js").connent();
 
+app.use(cookieParser());
+
 const app = express();
 const allowedOrigins = ["https://psychocoders.vercel.app"];
 
@@ -31,7 +33,6 @@ app.use(
   })
 );
 
-app.use(cookieParser());
 app.use("/auth", UserRouter);
 app.use("/problem", ProblemRouter);
 
