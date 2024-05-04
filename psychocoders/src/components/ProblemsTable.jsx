@@ -26,7 +26,7 @@ const ProblemTable = ({ problems, user }) => {
         return (
           <tr className={`${bgcolor}`} key={problem.id}>
             <td className="p-2">
-              {user.problemSolved && getSolvedProblems(problem.title) && (
+              {user && user.problemSolved && getSolvedProblems(problem.title) && (
                 <img src={done} alt="Solved" />
               )}
             </td>
