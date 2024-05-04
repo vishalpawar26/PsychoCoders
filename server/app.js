@@ -14,7 +14,7 @@ require("dotenv").config();
 require("./database/database.js").connent();
 
 const app = express();
-const allowedOrigins = ["https://psychocoders.vercel.app/login"];
+const allowedOrigins = ["https://psychocoders.vercel.app"];
 
 app.use(express.json());
 app.use(
