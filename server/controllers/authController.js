@@ -78,12 +78,13 @@ exports.login = async (req, res) => {
     }
 
     // generate a token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1d"
+    });
 
     // send token in cookie
     res.cookie(String(user._id), token, {
       expiresIn: new Date(Date.now() + 1000 * 60 * 60 * 24),
-      domain: "psycho-coders-server.vercel.app",
       httpOnly: true,
       secure: true,
       sameSite: "none"
