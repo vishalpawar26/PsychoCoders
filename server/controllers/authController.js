@@ -82,8 +82,8 @@ exports.login = async (req, res) => {
 
     // send token in cookie
     res.cookie(String(user._id), token, {
-      path: "/",
       expiresIn: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      domain: "psycho-coders-server.vercel.app",
       httpOnly: true,
       secure: true,
       sameSite: "none"
