@@ -17,13 +17,15 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://psychocoders.vercel.app",
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://psychocoders.vercel.app",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   })
+// );
+
+app.use(cors());
 
 app.use("/auth", UserRouter);
 app.use("/problem", ProblemRouter);
