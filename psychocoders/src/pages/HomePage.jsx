@@ -17,8 +17,6 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-
   useEffect(() => {
     getUserDetails();
   }, []);
@@ -70,7 +68,7 @@ const HomePage = () => {
       : `https://psycho-coders-server.vercel.app/problems`;
 
     axios
-      .get(url)
+      .get(url, { withCredentials: true })
       .then((problems) => {
         setProblems(problems.data);
       })

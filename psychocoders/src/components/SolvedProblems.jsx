@@ -14,8 +14,6 @@ const SolvedProblems = ({ solvedProblemsList }) => {
   const [totalMediumProblemsCount, setTotalMediumProblemsCount] = useState(0);
   const [totalHardProblemsCount, setTotalHardProblemsCount] = useState(0);
 
-  axios.defaults.withCredentials = true;
-
   const countSolvedProblems = () => {
     let easyPC = 0;
     let mediumPC = 0;
@@ -59,7 +57,9 @@ const SolvedProblems = ({ solvedProblemsList }) => {
 
   const getTotalProblems = () => {
     axios
-      .get("https://psycho-coders-server.vercel.app/problems")
+      .get("https://psycho-coders-server.vercel.app/problems", {
+        withCredentials: true,
+      })
       .then((problems) => {
         setTotalProblems(problems.data.length);
         countTotalProblems(problems.data);

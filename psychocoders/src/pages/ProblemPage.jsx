@@ -65,8 +65,6 @@ const ProblemPage = ({
 
   const outputRef = useRef(null);
 
-  axios.defaults.withCredentials = true;
-
   useEffect(() => {
     if (language.value === "cpp") {
       setCode(cppDefault);
@@ -83,9 +81,12 @@ const ProblemPage = ({
 
   const getUserDetails = async () => {
     try {
-      const user = await axios.get(`https://psycho-coders-server.vercel.app/auth/user`, {
-        withCredentials: true,
-      });
+      const user = await axios.get(
+        `https://psycho-coders-server.vercel.app/auth/user`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setUser(user.data);
     } catch (error) {
@@ -103,17 +104,21 @@ const ProblemPage = ({
     const submissionDate = new Date();
 
     try {
-      const updateUser = await axios.post(`https://psycho-coders-server.vercel.app/update`, {
-        userId,
-        title,
-        problemUrl,
-        difficulty,
-        langLabel,
-        langValue,
-        code,
-        submissionDate,
-        submissionBy,
-      });
+      const updateUser = await axios.post(
+        `https://psycho-coders-server.vercel.app/update`,
+        {
+          userId,
+          title,
+          problemUrl,
+          difficulty,
+          langLabel,
+          langValue,
+          code,
+          submissionDate,
+          submissionBy,
+        },
+        { withCredentials: true }
+      );
 
       // setUser(updateUser.data);
       console.log(updateUser);
@@ -162,10 +167,10 @@ const ProblemPage = ({
 
     const id = toast.loading("Processing...");
 
-    axios.defaults.withCredentials = true;
-
     await axios
-      .post("https://psycho-coders-server.vercel.app/run", data)
+      .post("https://psycho-coders-server.vercel.app/run", data, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res.data);
 
@@ -210,10 +215,10 @@ const ProblemPage = ({
 
     const id = toast.loading("Submitting the code...");
 
-    axios.defaults.withCredentials = true;
-
     await axios
-      .post("https://psycho-coders-server.vercel.app/run", data)
+      .post("https://psycho-coders-server.vercel.app/run", data, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res);
 

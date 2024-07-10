@@ -15,14 +15,16 @@ const LoginPage = () => {
   const [processing, setProcessing] = useState(false);
 
   const navigate = useNavigate();
-
-  axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
     setProcessing(true);
 
     axios
-      .post("https://psycho-coders-server.vercel.app/auth/login", { email, password })
+      .post(
+        "https://psycho-coders-server.vercel.app/auth/login",
+        { email, password },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log(res);
         setMessage(null);

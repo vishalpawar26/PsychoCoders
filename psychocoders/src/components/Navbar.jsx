@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/logo-3.png";
 
 const Navbar = ({ user }) => {
-  axios.defaults.withCredentials = true;
-
   const logoutUser = async () => {
     const response = await axios.post(
       "https://psycho-coders-server.vercel.app/auth/logout",

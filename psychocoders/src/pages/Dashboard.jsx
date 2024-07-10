@@ -13,8 +13,6 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-
   const getUserDetails = async () => {
     try {
       const user = await axios.get(

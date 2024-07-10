@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -10,17 +10,18 @@ const Problem = () => {
 
   const [problem, setProblem] = useState();
 
-  axios.defaults.withCredentials = true;
-
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await axios.get(`https://psycho-coders-server.vercel.app/problem/${problemId}`);
+        const response = await axios.get(
+          `https://psycho-coders-server.vercel.app/problem/${problemId}`,
+          { withCredentials: true }
+        );
         setProblem(response.data);
       } catch (error) {
         console.log(error);
       }
-    }
+    };
 
     fetchProblem();
   }, [problemId]);

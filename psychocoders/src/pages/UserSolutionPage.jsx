@@ -15,13 +15,12 @@ const UserSolutionPage = () => {
   const [copied, setCopied] = useState(false);
   const [solution, setSolution] = useState();
 
-  axios.defaults.withCredentials = true;
-
   useEffect(() => {
     const getSolutionDetails = async () => {
       try {
         const response = await axios.get(
-          `https://psycho-coders-server.vercel.app/problem/viewsolution/${submissionId}`
+          `https://psycho-coders-server.vercel.app/problem/viewsolution/${submissionId}`,
+          { withCredentials: true }
         );
         setSolution(response.data);
       } catch (error) {

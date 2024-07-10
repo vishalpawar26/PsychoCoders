@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import logo from "../assets/images/logo-1.png";
-import loader from "../assets/animations/loader.gif"
+import loader from "../assets/animations/loader.gif";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -18,19 +18,21 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setProcessing(true);
 
     axios
-      .post("https://psycho-coders-server.vercel.app/auth/register", {
-        username,
-        institution,
-        email,
-        password,
-      })
+      .post(
+        "https://psycho-coders-server.vercel.app/auth/register",
+        {
+          username,
+          institution,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log(res);
         setMessage(null);
