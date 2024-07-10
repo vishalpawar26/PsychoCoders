@@ -84,7 +84,7 @@ exports.login = async (req, res) => {
 
     // send token in cookie
     res.cookie(String(user._id), token, {
-      expiresIn: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
       httpOnly: true,
       sameSite: "none",
       secure: true,
