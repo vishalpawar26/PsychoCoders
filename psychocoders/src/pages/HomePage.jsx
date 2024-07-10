@@ -48,14 +48,14 @@ const HomePage = () => {
         `https://psycho-coders-server.vercel.app/auth/user`,
         {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
 
       setUser(user.data);
-      console.log(user.data);
-      if (user.data.message === "No cookie present!") {
-        navigate("/login");
-      }
+      navigate("/login");
     } catch (error) {
       console.log(error);
       navigate("/login");

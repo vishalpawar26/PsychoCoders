@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 
 const UserRouter = require("./routes/user.js");
 const ProblemRouter = require("./routes/problemRoute.js");
@@ -15,7 +14,6 @@ require("./database/database.js").connent();
 
 const app = express();
 
-app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({

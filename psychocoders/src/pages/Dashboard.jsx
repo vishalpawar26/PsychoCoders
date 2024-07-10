@@ -19,15 +19,16 @@ const Dashboard = () => {
         `https://psycho-coders-server.vercel.app/auth/user/${username}`,
         {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
 
       setUser(user.data);
     } catch (error) {
       console.log(error);
-      if (error.response.data.message === "No cookie present!") {
-        navigate("/login");
-      }
+      navigate("/login");
     }
   };
 
@@ -64,9 +65,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <SolvedProblems
-              solvedProblemsList={user.problemSolved}
-            />
+            <SolvedProblems solvedProblemsList={user.problemSolved} />
           </div>
         ) : (
           <div className="h-full flex flex-col justify-center items-center">

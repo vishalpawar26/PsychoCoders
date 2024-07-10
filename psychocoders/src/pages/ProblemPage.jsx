@@ -85,6 +85,9 @@ const ProblemPage = ({
         `https://psycho-coders-server.vercel.app/auth/user`,
         {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
 

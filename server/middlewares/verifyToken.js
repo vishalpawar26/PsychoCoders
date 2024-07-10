@@ -1,14 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-  // get cookie from headers
-  const cookie = req.headers.cookie;
-  if (!cookie) {
-    return res.status(400).json({ message: "No cookie present!" });
-  }
-
-  // get token from the cookie
-  const token = cookie.split("=")[1];
+  // get token from headers
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
   if (!token) {
     return res.status(400).json({message: "No token found!"});
   }

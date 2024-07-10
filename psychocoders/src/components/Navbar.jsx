@@ -1,28 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/images/logo-3.png";
 
 const Navbar = ({ user }) => {
   const logoutUser = async () => {
-    const response = await axios.post(
-      "https://psycho-coders-server.vercel.app/auth/logout",
-      null,
-      {
-        withCredentials: true,
-      }
-    );
-
-    if (response.status === 200) {
-      return response;
-    }
-
-    return new Error("Unable to logout!");
-  };
-
-  const handleLogout = () => {
-    logoutUser();
+    localStorage.removeItem('token');
   };
 
   return (
@@ -43,7 +26,7 @@ const Navbar = ({ user }) => {
             )}
             <Link
               to={"/login"}
-              onClick={handleLogout}
+              onClick={logoutUser}
               className="px-4 py-1 bg-dark-yellow/10 text-dark-yellow rounded-md transition hover:bg-dark-yellow/15"
             >
               Logout

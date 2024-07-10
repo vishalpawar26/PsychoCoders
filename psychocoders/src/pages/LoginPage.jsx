@@ -26,15 +26,15 @@ const LoginPage = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res);
         setMessage(null);
         setProcessing(false);
+        localStorage.setItem('token', res.data.token);
         if (res.status === 200) {
           navigate("/");
         }
       })
       .catch((error) => {
-        setMessage(error.response.data.message);
+        setMessage(error?.response?.data.message);
         console.log(error);
         setProcessing(false);
       });

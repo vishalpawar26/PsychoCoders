@@ -82,40 +82,9 @@ exports.login = async (req, res) => {
       expiresIn: "1d"
     });
 
-    // send token in cookie
-    res.cookie(String(user._id), token, {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-    });
-
-    return res.status(200).json({ message: "Logged in successfully!" });
+    return res.status(200).json({ message: "Logged in successfully!", token });
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
   }
-};
-
-exports.logout = async (req, res) => {
-  const cookie = req.headers.cookie;
-
-  if (!cookie) {
-    return res.status(400).json({message: "No cookie found!"});
-  }
-
-  const token = cookie.split("=")[1];
-
-  if (!token) {
-    return res.status(400).json({message: "No token found!"});
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
-    if (error) {
-      return res.status(400).json({message: "Invalid token!"});
-    }
-
-    res.clearCookie(user.id);
-    return res.status(200).json({message: "Logged out successfully"});
-  })
 };
