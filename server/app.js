@@ -21,6 +21,7 @@ app.use(
   cors({
     origin: "https://psychocoders.vercel.app",
     methods: ["GET", "POST"],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   })
 );
