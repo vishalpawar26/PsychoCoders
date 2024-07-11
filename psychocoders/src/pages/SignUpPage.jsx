@@ -55,7 +55,7 @@ const SignUpPage = () => {
       <Navbar />
       <div className="bg-dark-gray h-screen flex justify-center items-center">
         <form onSubmit={handleSubmit}>
-          <div className="px-6 py-y bg-dark-yellow/10 w-96 rounded-lg flex flex-col justify-center items-center shadow-lg">
+          <div className="px-6 py-6 bg-dark-yellow/10 w-96 rounded-lg flex flex-col justify-center items-center shadow-lg">
             <img src={logo} alt="PsychoCoders" className="w-44 mb-4" />
 
             {message && (
