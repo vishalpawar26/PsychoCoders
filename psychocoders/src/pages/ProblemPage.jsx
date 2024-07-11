@@ -265,7 +265,7 @@ const ProblemPage = ({
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen min-w-[1024px]">
       <Problem_Navbar user={user} />
       <div className="w-full h-main bg-dark-gray text-white/80 flex">
         <div className="px-4 py-6 w-1/2 overflow-y-auto">

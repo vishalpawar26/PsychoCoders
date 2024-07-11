@@ -73,7 +73,7 @@ const UserSolutionPage = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen min-w-[1024px]">
       {solution ? (
         <>
           <Navbar user={solution} />

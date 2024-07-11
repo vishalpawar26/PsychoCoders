@@ -51,11 +51,11 @@ const SignUpPage = () => {
   };
 
   return (
-    <>
+    <div className="min-w-[1024px]">
       <Navbar />
-      <div className="bg-dark-gray h-main min-w-[1024px] flex justify-center items-center">
+      <div className="bg-dark-gray h-screen flex justify-center items-center">
         <form onSubmit={handleSubmit}>
-          <div className="px-6 py-8 bg-dark-yellow/10 w-96 rounded-lg flex flex-col justify-center items-center shadow-lg">
+          <div className="px-6 py-y bg-dark-yellow/10 w-96 rounded-lg flex flex-col justify-center items-center shadow-lg">
             <img src={logo} alt="PsychoCoders" className="w-44 mb-4" />
 
             {message && (
@@ -129,7 +129,7 @@ const SignUpPage = () => {
         </form>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

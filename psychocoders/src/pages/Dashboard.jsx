@@ -37,7 +37,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <>
+    <div className="min-w-[1024px]">
       <Navbar user={user} />
       <div className="px-36 py-4 h-main bg-dark-gray">
         {user ? (
@@ -75,7 +75,7 @@ const Dashboard = () => {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
