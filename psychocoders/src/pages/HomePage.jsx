@@ -79,7 +79,7 @@ const HomePage = () => {
   return (
     <div className="h-screen bg-dark-gray min-w-[1024px]">
       <Navbar user={user} />
-      <div className="mx-36 bg-dark-gray min-w-[1024px] h-main flex">
+      <div className="mx-36 bg-dark-gray h-main flex">
         <div className="my-4 mr-4 px-4 py-2 w-[25%] bg-gray rounded-md">
           <div className="pb-2 flex justify-between">
             <h2 className="text-white/80 font-semibold text-xl">Filters</h2>
